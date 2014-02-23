@@ -129,4 +129,4 @@
         // If we don't even have window, try global.
         global.HTTPArchiveLog = HTTPArchiveLog;
     }
-})();
+}).call(this);

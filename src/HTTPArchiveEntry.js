@@ -169,4 +169,4 @@
         // If we don't even have window, try global.
         global.HTTPArchiveEntry = HTTPArchiveEntry;
     }
-})();
+}).call(this);

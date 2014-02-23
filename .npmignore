@@ -1,0 +1,9 @@
+*.md
+.jshintrc
+.coveralls.yml
+.editorconfig
+.npmignore
+.travils.yml
+Gruntfile.js
+bower.json
+test

@@ -93,4 +93,4 @@
         // If we don't even have window, try global.
         global.HTTPArchivePage = HTTPArchivePage;
     }
-})();
+}).call(this);

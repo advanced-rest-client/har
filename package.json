@@ -23,7 +23,7 @@
       "url": "https://github.com/codeinchaos/httparchive.js/blob/master/LICENSE"
     }
   ],
-  "main": "dist/HTTPArchive.js",
+  "main": "index.js",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.2",

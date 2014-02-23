@@ -299,4 +299,4 @@
         // If we don't even have window, try global.
         global.HTTPArchiveRequest = HTTPArchiveRequest;
     }
-})();
+}).call(this);
