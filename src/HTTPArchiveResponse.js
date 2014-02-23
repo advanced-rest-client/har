@@ -1,7 +1,7 @@
-(function (window) {
+(function () {
     'use strict';
 
-    var HTTPArchiveResponse = window.HTTPArchiveResponse = function (options, strict) {
+    function HTTPArchiveResponse (options, strict) {
         this._strict = (strict === undefined) ? true : strict;
 
         Object.defineProperties(this, new HTTPArchiveHeadersProps(this));
@@ -61,7 +61,7 @@
         });
 
         this.setOptions(options);
-    };
+    }
 
     HTTPArchiveResponse.prototype.printHeaders = function () {
         var headers = [];
@@ -79,4 +79,29 @@
     HTTPArchiveResponse.prototype.toString = function () {
         return this.printHeaders();
     };
-})(window || this);
+
+    if (typeof define === 'function') {
+        // Add support for require.js
+        if (typeof define.amd === 'undefined') {
+            define(function(require, exports, module) {
+                exports.HTTPArchiveResponse = HTTPArchiveResponse;
+            });
+        } else {
+            // if is AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
+            define([], function() {
+                return HTTPArchiveResponse;
+            });
+        }
+
+    } else if (typeof exports !== 'undefined') {
+        // Add support for CommonJS. Just put this file somewhere on your require.paths
+        // and you will be able to `var HTTPArchiveResponse = require('beautify').HTTPArchiveResponse`.
+        exports.HTTPArchiveResponse = HTTPArchiveResponse;
+    } else if (typeof window !== 'undefined') {
+        // If we're running a web page and don't have either of the above, add our one global
+        window.HTTPArchiveResponse = HTTPArchiveResponse;
+    } else if (typeof global !== 'undefined') {
+        // If we don't even have window, try global.
+        global.HTTPArchiveResponse = HTTPArchiveResponse;
+    }
+})();

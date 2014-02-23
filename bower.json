@@ -14,14 +14,15 @@
         "HTTP Archive"
     ],
     "main": [
-        "dist/HTTPArchive.js",
-        "dist/HTTPArchive.min.js"
+        "lib/HTTPArchive.js",
+        "lib/HTTPArchive.min.js"
     ],
     "ignore": [
         "**/.*",
         ".md",
         "test",
         "src",
+        "bin",
         "node_modules",
         "package.json",
         "Gruntfile.js"

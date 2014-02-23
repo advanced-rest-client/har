@@ -1,10 +1,7 @@
-(function (window) {
+(function () {
     'use strict';
 
-    var HTTPArchiveURLRegExp = window.HTTPArchiveURLRegExp = /\b(https?|ftp):\/\/([\-A-Z0-9.]+)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;]*)?/i;
-
-
-    var HTTPArchiveHeadersProps = window.HTTPArchiveHeadersProps = function(thisArg) {
+    function HTTPArchiveHeadersProps (thisArg) {
         return {
             props: {
                 enumerable: false,
@@ -86,7 +83,7 @@
                 }.bind(thisArg)
             }
         };
-    };
+    }
 
     HTTPArchiveLog.prototype.setOptions = HTTPArchiveRequest.prototype.setOptions = HTTPArchiveResponse.prototype.setOptions = HTTPArchivePage.prototype.setOptions = HTTPArchiveEntry.prototype.setOptions = function (options) {
         if (arguments.length === 0 || options === undefined) {
@@ -222,4 +219,29 @@
 
         return this;
     };
-})(window || this);
+
+    if (typeof define === 'function') {
+        // Add support for require.js
+        if (typeof define.amd === 'undefined') {
+            define(function(require, exports, module) {
+                exports.HTTPArchiveHeadersProps = HTTPArchiveHeadersProps;
+            });
+        } else {
+            // if is AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
+            define([], function() {
+                return HTTPArchiveHeadersProps;
+            });
+        }
+
+    } else if (typeof exports !== 'undefined') {
+        // Add support for CommonJS. Just put this file somewhere on your require.paths
+        // and you will be able to `var HTTPArchiveHeadersProps = require('beautify').HTTPArchiveHeadersProps`.
+        exports.HTTPArchiveHeadersProps = HTTPArchiveHeadersProps;
+    } else if (typeof window !== 'undefined') {
+        // If we're running a web page and don't have either of the above, add our one global
+        window.HTTPArchiveHeadersProps = HTTPArchiveHeadersProps;
+    } else if (typeof global !== 'undefined') {
+        // If we don't even have window, try global.
+        global.HTTPArchiveHeadersProps = HTTPArchiveHeadersProps;
+    }
+})();

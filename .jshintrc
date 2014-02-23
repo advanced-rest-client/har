@@ -23,6 +23,9 @@
     "globals": {
         "module":       true,
         "require":      true,
+        "define":       true,
+        "exports":      true,
+        "global":       true,
 
         "HTTPArchiveLog": true,
         "HTTPArchivePage": true,

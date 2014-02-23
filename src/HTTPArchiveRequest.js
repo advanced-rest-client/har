@@ -1,5 +1,7 @@
-(function (window) {
+(function () {
     'use strict';
+
+    var HTTPArchiveURLRegExp = /\b(https?|ftp):\/\/([\-A-Z0-9.]+)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;]*)?/i;
 
     // https://github.com/medialize/URI.js
     var Query = {
@@ -55,7 +57,7 @@
         }
     };
 
-    var HTTPArchiveRequest = window.HTTPArchiveRequest = function (options, strict) {
+    function HTTPArchiveRequest (options, strict) {
         this._strict = (strict === undefined) ? true : strict;
 
         Object.defineProperties(this, new HTTPArchiveHeadersProps(this));
@@ -158,7 +160,7 @@
         });
 
         this.setOptions(options);
-    };
+    }
 
     /**
      * queryString Utils
@@ -272,4 +274,29 @@
     HTTPArchiveRequest.prototype.toString = function () {
         return this.printHeaders();
     };
-})(window || this);
+
+    if (typeof define === 'function') {
+        // Add support for require.js
+        if (typeof define.amd === 'undefined') {
+            define(function(require, exports, module) {
+                exports.HTTPArchiveRequest = HTTPArchiveRequest;
+            });
+        } else {
+            // if is AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
+            define([], function() {
+                return HTTPArchiveRequest;
+            });
+        }
+
+    } else if (typeof exports !== 'undefined') {
+        // Add support for CommonJS. Just put this file somewhere on your require.paths
+        // and you will be able to `var HTTPArchiveRequest = require('beautify').HTTPArchiveRequest`.
+        exports.HTTPArchiveRequest = HTTPArchiveRequest;
+    } else if (typeof window !== 'undefined') {
+        // If we're running a web page and don't have either of the above, add our one global
+        window.HTTPArchiveRequest = HTTPArchiveRequest;
+    } else if (typeof global !== 'undefined') {
+        // If we don't even have window, try global.
+        global.HTTPArchiveRequest = HTTPArchiveRequest;
+    }
+})();

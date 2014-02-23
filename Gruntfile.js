@@ -19,8 +19,8 @@ module.exports = function (grunt) {
               ' */\n\n',
 
         clean: {
-            dist: ['dist'],
-            all: ['dist', 'bower_components', 'node_modules'],
+            lib: ['lib'],
+            all: ['lib', 'bower_components', 'node_modules'],
             report: ['test/report']
         },
 
@@ -29,9 +29,9 @@ module.exports = function (grunt) {
                 banner: '<%= banner %>'
             },
 
-            dist: {
+            lib: {
                 files: {
-                    'dist/HTTPArchive.js': [
+                    'lib/HTTPArchive.js': [
                         'src/HTTPArchiveLog.js',
                         'src/HTTPArchivePage.js',
                         'src/HTTPArchiveEntry.js',
@@ -48,9 +48,9 @@ module.exports = function (grunt) {
                 banner: '<%= banner %>'
             },
 
-            dist: {
+            lib: {
                 files: {
-                    'dist/HTTPArchive.min.js': 'dist/HTTPArchive.js'
+                    'lib/HTTPArchive.min.js': 'lib/HTTPArchive.js'
                 }
             }
         },
@@ -60,11 +60,11 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc'
             },
 
-            dist: ['Gruntfile.js', 'src/*.js'],
+            lib: ['Gruntfile.js', 'src/*.js'],
         },
 
         qunit: {
-            dist: {
+            lib: {
                 options: {
                     urls: ['test/index.html'],
                     coverage: {
@@ -99,7 +99,7 @@ module.exports = function (grunt) {
                 files: ['src/*.js'],
                 tasks: ['jshint', 'concat'],
                 options: {
-                    spawn: false,
+                    spawn: false
                 }
             }
         },

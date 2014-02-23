@@ -1,7 +1,7 @@
-(function (window) {
+(function () {
     'use strict';
 
-    var HTTPArchiveLog = window.HTTPArchiveLog = function (options, strict) {
+    function HTTPArchiveLog (options, strict) {
         this._strict = (strict === undefined) ? true : strict;
 
         Object.defineProperties(this, {
@@ -85,7 +85,7 @@
         });
 
         this.setOptions(options);
-    };
+    }
 
     HTTPArchiveLog.prototype.addPage = function (page) {
         if (!(page instanceof HTTPArchivePage)) {
@@ -104,4 +104,29 @@
         this.props._entries.push(entry);
         return entry;
     };
-})(window || this);
+
+    if (typeof define === 'function') {
+        // Add support for require.js
+        if (typeof define.amd === 'undefined') {
+            define(function(require, exports, module) {
+                exports.HTTPArchiveLog = HTTPArchiveLog;
+            });
+        } else {
+            // if is AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
+            define([], function() {
+                return HTTPArchiveLog;
+            });
+        }
+
+    } else if (typeof exports !== 'undefined') {
+        // Add support for CommonJS. Just put this file somewhere on your require.paths
+        // and you will be able to `var HTTPArchiveLog = require('beautify').HTTPArchiveLog`.
+        exports.HTTPArchiveLog = HTTPArchiveLog;
+    } else if (typeof window !== 'undefined') {
+        // If we're running a web page and don't have either of the above, add our one global
+        window.HTTPArchiveLog = HTTPArchiveLog;
+    } else if (typeof global !== 'undefined') {
+        // If we don't even have window, try global.
+        global.HTTPArchiveLog = HTTPArchiveLog;
+    }
+})();
