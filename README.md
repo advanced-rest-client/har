@@ -48,9 +48,20 @@ JavaScript library to manipulate [HTTP Archive 1.2](http://www.softwareishard.co
 Four quick start options are available:
 
 - [Download the latest release](https://github.com/codeinchaos/httparchive.js/releases).
-- Clone the repo: `git clone git@github.com:codeinchaos/httparchive.js.git`.
-- Install with [Bower](http://bower.io): `bower install httparchive.js`. [![Bower version][bower-image]][bower-url]
-- Install with [NPM](http://npmjs.org): `npm install httparchive.js`. [![NPM version][npm-image]][npm-url]
+- Clone the repo: 
+  ```bash
+git clone git@github.com:codeinchaos/httparchive.js.git
+```
+
+- Install with [Bower](http://bower.io) [![Bower version][bower-image]][bower-url]
+  ```bash
+bower install httparchive.js
+```
+
+- Install with [NPM](http://npmjs.org) [![NPM version][npm-image]][npm-url]
+  ```bash
+npm install httparchive.js
+```
 
 ### What's included
 
