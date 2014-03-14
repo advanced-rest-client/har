@@ -1,6 +1,7 @@
 # HTTPArchive.js ![GitHub version][github-image]
 
 [![Build Status][travis-image]][travis-url]
+[![Code Climate][codeclimate-image]][codeclimate-url]
 [![Dependency Status][daviddm-url]][daviddm-image]
 [![devDependency Status][daviddm-dev-url]][daviddm-dev-image]
 [![Coverage Status][coveralls-image]][coveralls-url]
@@ -272,6 +273,8 @@ Licensed under [the MIT license](LICENSE).
 [npm-image]: https://badge.fury.io/js/httparchive.js.png
 [travis-url]: https://travis-ci.org/codeinchaos/httparchive.js
 [travis-image]: https://travis-ci.org/codeinchaos/httparchive.js.png?branch=master
+[codeclimate-url]: https://codeclimate.com/github/codeinchaos/httparchive.js
+[codeclimate-image]: https://codeclimate.com/github/codeinchaos/httparchive.js.png
 [daviddm-url]: https://david-dm.org/codeinchaos/httparchive.js
 [daviddm-image]: https://david-dm.org/codeinchaos/httparchive.js.png
 [daviddm-dev-url]: https://david-dm.org/codeinchaos/httparchive.js#info=devDependencies
