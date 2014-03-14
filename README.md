@@ -1,9 +1,10 @@
-# HTTPArchive.js
-[![Build Status](https://travis-ci.org/codeinchaos/httparchive.js.png?branch=master)](https://travis-ci.org/codeinchaos/httparchive.js)
-[![Dependency Status](https://david-dm.org/codeinchaos/httparchive.js.png)](https://david-dm.org/codeinchaos/httparchive.js)
-[![devDependency Status](https://david-dm.org/codeinchaos/httparchive.js/dev-status.png)](https://david-dm.org/codeinchaos/httparchive.js#info=devDependencies)
-[![Coverage Status](https://coveralls.io/repos/codeinchaos/httparchive.js/badge.png)](https://coveralls.io/r/codeinchaos/httparchive.js)
-[![Total views](https://sourcegraph.com/api/repos/github.com/codeinchaos/httparchive.js/counters/views.png)](https://sourcegraph.com/github.com/codeinchaos/httparchive.js)
+# HTTPArchive.js ![GitHub version][github-image]
+
+[![Build Status][travis-image]][travis-url]
+[![Dependency Status][daviddm-url]][daviddm-image]
+[![devDependency Status][daviddm-dev-url]][daviddm-dev-image]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![Total views][sourcegraph-image]][sourcegraph-url]
 
 JavaScript library to manipulate [HTTP Archive 1.2](http://www.softwareishard.com/blog/har-12-spec/) JSON objects. You can install with [Bower](http://bower.io) or [NPM](https://npmjs.org/package/httparchive.js).
 
@@ -48,8 +49,8 @@ Four quick start options are available:
 
 - [Download the latest release](https://github.com/codeinchaos/httparchive.js/releases).
 - Clone the repo: `git clone git@github.com:codeinchaos/httparchive.js.git`.
-- Install with [Bower](http://bower.io): `bower install httparchive.js`.
-- Install with [NPM](http://npmjs.org): `npm install httparchive.js`.
+- Install with [Bower](http://bower.io): `bower install httparchive.js`. [![Bower version][bower-image]][bower-url]
+- Install with [NPM](http://npmjs.org): `npm install httparchive.js`. [![NPM version][npm-image]][npm-url]
 
 ### What's included
 
@@ -169,6 +170,9 @@ this should output:
 }
 ```
 
+## Change Log
+* v0.0.0 
+
 ## Documentation
 
 Refer to the [Wiki](https://github.com/codeinchaos/httparchive.js/wiki) for detailed API documentation.
@@ -201,18 +205,18 @@ More over, if your pull request contains JavaScript patches or features, you mus
 
 Editor preferences are available in the [editor config](https://github.com/codeinchaos/httparchive.js/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
 
-## Contribute and Earn
+### Contribute and Earn
 
 Donate bitcoins to this project or make commits and get tips for it. If your commit is accepted by project maintainer and there are bitcoins on its balance, you will get a tip!
 
-[![tip for next commit](http://tip4commit.com/projects/640.svg)](http://tip4commit.com/projects/640)
+[![tip for next commit][tip4commit-image]][tip4commit-url]
 
 ## Donating
 
 Donations are welcome to help support the continuous development of this project.
 
-[![GitTip](http://img.shields.io/gittip/ahmadnassri.svg)](https://www.gittip.com/ahmadnassri/)
-[![PayPal](http://img.shields.io/badge/PayPal-Donate-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UJ2B2BTK9VLRS)
+[![GitTip][gittip-image]][gittip-url]
+[![PayPal][paypal-image]][paypal-url]
 
 ## Community
 
@@ -250,6 +254,24 @@ For more information on SemVer, please visit <http://semver.org/>.
 
 Licensed under [the MIT license](LICENSE).
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/codeinchaos/httparchive.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+[github-image]: https://badge.fury.io/gh/codeinchaos%2Fhttparchive.js.png
+[bower-url]: http://badge.fury.io/bo/httparchive.js
+[bower-image]: https://badge.fury.io/bo/httparchive.js.png
+[npm-url]: http://badge.fury.io/js/httparchive.js
+[npm-image]: https://badge.fury.io/js/httparchive.js.png
+[travis-url]: https://travis-ci.org/codeinchaos/httparchive.js
+[travis-image]: https://travis-ci.org/codeinchaos/httparchive.js.png?branch=master
+[daviddm-url]: https://david-dm.org/codeinchaos/httparchive.js
+[daviddm-image]: https://david-dm.org/codeinchaos/httparchive.js.png
+[daviddm-dev-url]: https://david-dm.org/codeinchaos/httparchive.js#info=devDependencies
+[daviddm-dev-image]: https://david-dm.org/codeinchaos/httparchive.js/dev-status.png
+[coveralls-url]: https://coveralls.io/r/codeinchaos/httparchive.js
+[coveralls-image]: https://coveralls.io/repos/codeinchaos/httparchive.js/badge.png
+[sourcegraph-url]: https://sourcegraph.com/github.com/codeinchaos/httparchive.js
+[sourcegraph-image]: https://sourcegraph.com/api/repos/github.com/codeinchaos/httparchive.js/counters/views.png
+[gittip-url]: https://www.gittip.com/ahmadnassri/
+[gittip-image]: http://img.shields.io/gittip/ahmadnassri.svg
+[paypal-url]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UJ2B2BTK9VLRS
+[paypal-image]: http://img.shields.io/badge/PayPal-Donate-green.svg
+[tip4commit-url]: http://tip4commit.com/projects/640
+[tip4commit-image]: http://tip4commit.com/projects/640.svg
