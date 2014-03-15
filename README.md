@@ -21,21 +21,13 @@ JavaScript library to manipulate [HTTP Archive 1.2](http://www.softwareishard.co
 - Exports requests into cURL CLI commands
 - Exports queryString array into key=value string
 
-
-### TODO
-
-- Detailed API Docs.
-- Auto-calc body size when body is set
-- Construct XMLHTTPRequest objects with HTTPArchiveRequest data
-- Construct HTTPArchiveRequest object with XMLHTTPRequest response objects
-
 ## Table of contents
 
 - [Quick start](#quick-start)
 - [Change Log](#changelog)
 - [Documentation](#documentation)
 - [Bugs and feature requests](#bugs-and-feature-requests)
-- [Compiling](#compiling)
+- [Compiling](#compiling-)
 - [Contributing](#contributing)
 - [Contribute and Earn](#contribute-and-earn)
 - [Donating](#donating)
@@ -183,7 +175,7 @@ this should output:
 ```
 
 ## Change Log
-* v0.0.0 
+refer to the [releases](https://github.com/codeinchaos/httparchive.js/releases) section for a detailed ChangeLog
 
 ## Documentation
 
@@ -191,19 +183,19 @@ Refer to the [Wiki](https://github.com/codeinchaos/httparchive.js/wiki) for deta
 
 ## Bugs and feature requests
 
-Have a bug or a feature request? Please first read the [issue guidelines](https://github.com/codeinchaos/httparchive.js/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/codeinchaos/httparchive.js/issues/new).
+Have a bug or a feature request? Please first read the [issue guidelines](CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/codeinchaos/chrome.sockets.tcp.xhr/issues/new).
 
 ## Compiling [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-HTTPArchive.js uses [Grunt](http://gruntjs.com/). If you haven't used Grunt before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide.
+this project uses [Grunt](http://gruntjs.com/). If you haven't used Grunt before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide.
 
 ### Available Grunt commands
 
 | Function  | Command       | Description                                                                                                                               |
-| --------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Build     | `grunt`       | Run `grunt` to run tests locally and compile the JavaScript files into `/dist`.                                                           |
-| Tests     | `grunt test`  | Runs [JSHint](http://jshint.com) and [QUnit](http://qunitjs.com/) tests headlessly in [PhantomJS](http://phantomjs.org/) (used for CI).   |
-| Watch     | `grunt watch` | This is a convenience method for watching just Less files and automatically building them whenever you save.                              |
+| --------- | ------------- | --------------------------------------------- |
+| Build     | `grunt`       | Compiles.                                     |
+| Tests     | `grunt test`  | Runs tests.                                   |
+| Watch     | `grunt watch` | This is a convenience method for watching.    |
 
 ### Troubleshooting dependencies
 
@@ -211,11 +203,11 @@ Should you encounter problems with installing dependencies or running Grunt comm
 
 ## Contributing
 
-Please read through our [contributing guidelines](https://github.com/codeinchaos/httparchive.js/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+Please read through our [contributing guidelines](CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
 
 More over, if your pull request contains JavaScript patches or features, you must include relevant unit tests.
 
-Editor preferences are available in the [editor config](https://github.com/codeinchaos/httparchive.js/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
+Editor preferences are available in the [editor config](.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
 
 ### Contribute and Earn
 
@@ -237,11 +229,11 @@ Keep track of development and updates.
 - Follow [@ahmadnassri](http://twitter.com/ahmadnassri) & [@codeinchaos](http://twitter.com/codeinchaos) on Twitter.
 - Tweet [@codeinchaos](http://twitter.com/codeinchaos) with any questions/personal support requests.
 - Implementation help may be found at Stack Overflow (tagged [`httparchive.js`](http://stackoverflow.com/questions/tagged/httparchive.js)).
-- Read and subscribe to [My Blog](http://blog.ahmadnassri.com).
+- Read and subscribe to [My Blog](http://ahmadnassri.com).
 
 ## Versioning
 
-For transparency into our release cycle and in striving to maintain backward compatibility, HTTPArchive.js is maintained under the Semantic Versioning guidelines. Sometimes we screw up, but we'll adhere to these rules whenever possible.
+For transparency into our release cycle and in striving to maintain backward compatibility, this project is maintained under the Semantic Versioning guidelines. Sometimes we screw up, but we'll adhere to these rules whenever possible.
 
 Releases will be numbered with the following format:
 
