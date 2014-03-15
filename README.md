@@ -285,7 +285,7 @@ Licensed under [the MIT license](LICENSE).
 [sourcegraph-image]: https://sourcegraph.com/api/repos/github.com/codeinchaos/httparchive.js/counters/views.png
 [gittip-url]: https://www.gittip.com/ahmadnassri/
 [gittip-image]: http://img.shields.io/gittip/ahmadnassri.svg
-[paypal-url]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UJ2B2BTK9VLRS
+[paypal-url]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UJ2B2BTK9VLRS&on0=project&os0=httparchive.js
 [paypal-image]: http://img.shields.io/badge/PayPal-Donate-green.svg
 [tip4commit-url]: http://tip4commit.com/projects/640
 [tip4commit-image]: http://tip4commit.com/projects/640.svg
