@@ -158,7 +158,7 @@
         });
 
         this.setOptions(options);
-    };
+    }
 
     /**
      * queryString Utils
