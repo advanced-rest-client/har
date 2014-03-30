@@ -5,4 +5,5 @@ before_script:
   - npm install -g grunt-cli
   - cd test
   - npm install -g bower
+  - cd ..
 script: npm run-script ci
