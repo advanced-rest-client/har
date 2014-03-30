@@ -1,8 +1,6 @@
 (function () {
     'use strict';
 
-    var HTTPArchiveURLRegExp = /\b(https?|ftp):\/\/([\-A-Z0-9.]+)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;]*)?/i;
-
     // https://github.com/medialize/URI.js
     var Query = {
         parse: function(string) {
@@ -160,7 +158,7 @@
         });
 
         this.setOptions(options);
-    }
+    };
 
     /**
      * queryString Utils
@@ -225,7 +223,6 @@
 
         // add missing parts to header
         headers.push(this.method + ' ' + path + ' ' + this.httpVersion);
-        //headers.push('Host: ' + url[2]);
 
         for (var name in this.props._headers) {
             headers.push(name + ': ' + this.props._headers[name]);

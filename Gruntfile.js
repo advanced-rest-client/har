@@ -6,6 +6,7 @@ module.exports = function (grunt) {
 
     // show elapsed time at the end
     require('time-grunt')(grunt);
+
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
 
@@ -19,8 +20,8 @@ module.exports = function (grunt) {
               ' */\n\n',
 
         clean: {
-            lib: ['lib'],
-            all: ['lib', 'bower_components', 'node_modules'],
+            dist: ['dist'],
+            all: ['dist', 'bower_components', 'node_modules'],
             report: ['test/report']
         },
 
@@ -29,9 +30,9 @@ module.exports = function (grunt) {
                 banner: '<%= banner %>'
             },
 
-            lib: {
+            dist: {
                 files: {
-                    'lib/HTTPArchive.js': [
+                    'dist/HTTPArchive.js': [
                         'src/HTTPArchiveLog.js',
                         'src/HTTPArchivePage.js',
                         'src/HTTPArchiveEntry.js',
@@ -48,9 +49,9 @@ module.exports = function (grunt) {
                 banner: '<%= banner %>'
             },
 
-            lib: {
+            dist: {
                 files: {
-                    'lib/HTTPArchive.min.js': 'lib/HTTPArchive.js'
+                    'dist/HTTPArchive.min.js': 'dist/HTTPArchive.js'
                 }
             }
         },
@@ -60,11 +61,11 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc'
             },
 
-            lib: ['Gruntfile.js', 'src/*.js'],
+            dist: ['Gruntfile.js', 'src/*.js'],
         },
 
         qunit: {
-            lib: {
+            dist: {
                 options: {
                     urls: ['test/index.html'],
                     coverage: {
@@ -105,15 +106,20 @@ module.exports = function (grunt) {
         },
 
         bump: {
-            files: ['package.json', 'bower.json']
+            options: {
+                files: ['package.json', 'bower.json'],
+                updateConfigs: ['pkg'],
+                commit: true,
+                commitMessage: 'Release v%VERSION%',
+                commitFiles: ['package.json', 'bower.json'],
+                createTag: true,
+                tagName: 'v%VERSION%',
+                tagMessage: 'Version %VERSION%',
+                push: true,
+                pushTo: 'origin'
+            }
         }
     });
-
-    grunt.registerTask('default', [
-        'test',
-        'concat',
-        'watch'
-    ]);
 
     grunt.registerTask('test', [
         'clean:report',
@@ -121,9 +127,15 @@ module.exports = function (grunt) {
         'qunit'
     ]);
 
+    grunt.registerTask('default', [
+        'test',
+        'concat',
+        'watch'
+    ]);
+
     grunt.registerTask('release', [
         'test',
-        'default',
+        'concat',
         'uglify'
     ]);
 };
