@@ -5,3 +5,4 @@ npm-debug.log
 test/report
 node_modules
 bower_components
+docs/_build/

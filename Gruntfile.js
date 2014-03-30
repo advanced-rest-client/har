@@ -106,7 +106,18 @@ module.exports = function (grunt) {
         },
 
         bump: {
-            files: ['package.json', 'bower.json']
+            options: {
+                files: ['package.json', 'bower.json'],
+                updateConfigs: ['pkg'],
+                commit: true,
+                commitMessage: 'Release v%VERSION%',
+                commitFiles: ['package.json', 'bower.json'],
+                createTag: true,
+                tagName: 'v%VERSION%',
+                tagMessage: 'Version %VERSION%',
+                push: true,
+                pushTo: 'origin'
+            }
         }
     });
 
@@ -123,7 +134,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('release', [
-        'test',
         'test',
         'concat',
         'uglify'

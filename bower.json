@@ -1,12 +1,10 @@
 {
+  "version": "1.2.2",
   "name": "HTTPArchive.js",
   "description": "JavaScript library to manipulate HTTP Archive 1.2 JSON objects.",
-  "version": "1.2.2",
-  "license": "MIT",
+  "author": "Ahmad Nassri <ahmad@codeinchaos.com> (http://ahmadnassri.com)",
   "homepage": "https://github.com/codeinchaos/httparchive.js",
-  "authors": [
-    "Ahmad Nassri <ahmad@codeinchaos.com> (http://ahmadnassri.com)"
-  ],
+  "license": "MIT",
   "keywords": [
     "HAR",
     "HTTP",
@@ -19,7 +17,7 @@
   ],
   "ignore": [
     "**/.*",
-    ".md",
+    "docs",
     "test",
     "src",
     "node_modules",
