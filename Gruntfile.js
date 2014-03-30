@@ -16,7 +16,7 @@ module.exports = function (grunt) {
         banner: '/*!\n' +
               ' * HTTPArchive.js v<%= pkg.version %> (<%= pkg.repository.url %>)\n' +
               ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-              ' * Licensed under <%= _.pluck(pkg.licenses, "url").join(", ") %>\n' +
+              ' * Licensed under <%= pkg.license %> License\n' +
               ' */\n\n',
 
         clean: {
