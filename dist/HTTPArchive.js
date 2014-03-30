@@ -1,7 +1,7 @@
 /*!
  * HTTPArchive.js v1.2.2 (https://github.com/codeinchaos/httparchive.js.git)
- * Copyright 2014 Ahmad Nassri
- * Licensed under https://github.com/codeinchaos/httparchive.js/blob/master/LICENSE
+ * Copyright 2014 Ahmad Nassri <ahmad@codeinchaos.com> (http://ahmadnassri.com)
+ * Licensed under MIT License
  */
 
 (function (window) {
@@ -694,7 +694,6 @@
     'use strict';
 
     var HTTPArchiveURLRegExp = window.HTTPArchiveURLRegExp = /\b(https?|ftp):\/\/([\-A-Z0-9.]+)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;]*)?/i;
-
 
     var HTTPArchiveHeadersProps = window.HTTPArchiveHeadersProps = function(thisArg) {
         return {

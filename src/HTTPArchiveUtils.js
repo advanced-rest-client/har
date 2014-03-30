@@ -3,7 +3,6 @@
 
     var HTTPArchiveURLRegExp = window.HTTPArchiveURLRegExp = /\b(https?|ftp):\/\/([\-A-Z0-9.]+)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;]*)?/i;
 
-
     var HTTPArchiveHeadersProps = window.HTTPArchiveHeadersProps = function(thisArg) {
         return {
             props: {
