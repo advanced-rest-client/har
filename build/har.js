@@ -321,7 +321,7 @@ function Entry() {
     },
 
     set: function set(value) {
-      this._request = new _request.Request(value);
+      this._request = value instanceof _request.Request ? value : new _request.Request(value);
     }
   });
 
@@ -333,7 +333,7 @@ function Entry() {
     },
 
     set: function set(value) {
-      this._response = new _response.Response(value);
+      this._response = value instanceof _response.Response ? value : new _response.Response(value);
     }
   });
 
@@ -770,6 +770,13 @@ function Request() {
       configurable: false,
       writable: true,
       value: new _postData.PostData()
+    },
+
+    _url: {
+      enumerable: true,
+      configurable: false,
+      writable: true,
+      value: ''
     }
   });
 
@@ -782,7 +789,28 @@ function Request() {
 
   Object.defineProperty(this, 'url', {
     enumerable: true,
-    value: opts.url
+
+    get: function get() {
+      return this._url;
+    },
+
+    set: function set(url) {
+      var _this = this;
+
+      this._url = url;
+      var parser = document.createElement('a');
+      parser.href = url;
+      if (parser.search.length > 0) {
+        var params = parser.search.substr(1).split(/[&|;]/gi);
+        params.forEach(function (param) {
+          var parts = param.split('=');
+          _this.addQuery({
+            name: parts[0],
+            value: parts[1]
+          });
+        });
+      }
+    }
   });
 
   Object.defineProperty(this, 'httpVersion', {
@@ -881,6 +909,8 @@ function Request() {
       cookies.forEach(this.addCookie, this);
     }
   });
+
+  this.url = opts.url;
 
   if (opts.headers) {
     opts.headers.forEach(this.addHeader, this);

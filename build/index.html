@@ -19,7 +19,7 @@
     var pageParam = new HAR.Param({comment: 'hello', contentType: 'text/plain', fileName: 'foo.bar', name: 'foo', value: 'bar'});
     var post = new HAR.PostData({comment: 'hello world', mimeType: 'multipart/form-data', text: 'foo=bar'});
     post.addParam(pageParam);
-    var request = new HAR.Request({url: 'https://ahmadnassri.github.io/har-resources/', headers: [header], postData: post});
+    var request = new HAR.Request({url: 'https://ahmadnassri.github.io/har-resources/?param1=value1&param2=object2', headers: [header], postData: post});
     request.addCookie(cookie);
     request.addHeader(header);
     var response = new HAR.Response({ status: 200, statusText: 'OK', headers: [new HAR.Header('foo', 'bar')], content: new HAR.PostData({text: 'This is the response.'}) });
