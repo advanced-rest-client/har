@@ -307,8 +307,8 @@ function Entry() {
     enumerable: true,
     writable: true,
     value: {
-      beforeRequest: opts.cache.beforeRequest ? new _cacheEntry.CacheEntry(opts.cache.beforeRequest) : null,
-      afterRequest: opts.cache.afterRequest ? new _cacheEntry.CacheEntry(opts.cache.afterRequest) : null,
+      beforeRequest: opts.cache.beforeRequest ? opts.cache.beforeRequest instanceof _cacheEntry.CacheEntry ? opts.cache.beforeRequest : new _cacheEntry.CacheEntry(opts.cache.beforeRequest) : null,
+      afterRequest: opts.cache.afterRequest ? opts.cache.afterRequest instanceof _cacheEntry.CacheEntry ? opts.cache.afterRequest : new _cacheEntry.CacheEntry(opts.cache.afterRequest) : null,
       comment: opts.cache.comment
     }
   });
@@ -321,7 +321,8 @@ function Entry() {
     },
 
     set: function set(value) {
-      this._request = value instanceof _request.Request ? value : new _request.Request(value);
+      value = value instanceof _request.Request ? value : new _request.Request(value);
+      this._request = value;
     }
   });
 
@@ -333,12 +334,20 @@ function Entry() {
     },
 
     set: function set(value) {
-      this._response = value instanceof _response.Response ? value : new _response.Response(value);
+      value = value instanceof _response.Response ? value : new _response.Response(value);
+      this._response = value;
     }
   });
-
-  this.request = opts.request;
-  this.response = opts.response;
+  if (opts.request) {
+    this.request = opts.request;
+  } else if (opts._request) {
+    this.request = opts._request;
+  }
+  if (opts.response) {
+    this.response = opts.response;
+  } else if (opts._response) {
+    this.response = opts._response;
+  }
 }
 /**
  * Associate existing page with this Entry object.
@@ -348,6 +357,23 @@ Entry.prototype.setPage = function (page) {
     throw new Error('The page does not have id property.');
   }
   this.pageref = page.id;
+};
+/**
+ * Override toJSON behaviour so it will eliminate
+ * all _* properies and replace it with a proper ones.
+ */
+Entry.prototype.toJSON = function () {
+  var copy = Object.assign({}, this);
+  var keys = Object.keys(copy);
+  var under = keys.filter(function (key) {
+    return key.indexOf('_') === 0;
+  });
+  under.forEach(function (key) {
+    var realKey = key.substr(1);
+    copy[realKey] = copy[key];
+    delete copy[key];
+  });
+  return JSON.stringify(copy);
 };
 
 },{"./cache-entry":1,"./comment":2,"./date-time":6,"./request":14,"./response":15}],8:[function(require,module,exports){
@@ -449,12 +475,12 @@ function Log() {
 
   Object.defineProperty(this, 'creator', {
     enumerable: true,
-    value: new _creator.Creator(opts.creator)
+    value: opts.creator instanceof _creator.Creator ? opts.creator : new _creator.Creator(opts.creator)
   });
 
   Object.defineProperty(this, 'browser', {
     enumerable: true,
-    value: opts.browser ? new _creator.Creator(opts.browser) : undefined
+    value: opts.browser ? opts.browser instanceof _creator.Creator ? opts.browser : new _creator.Creator(opts.browser) : undefined
   });
 
   Object.defineProperty(this, 'pages', {
@@ -485,25 +511,45 @@ function Log() {
 
   if (opts.pages) {
     opts.pages.forEach(this.addPage, this);
+  } else if (opts._pages) {
+    opts._pages.forEach(this.addPage, this);
   }
 
   if (opts.entries) {
     opts.entries.forEach(this.addEntry, this);
+  } else if (opts._entries) {
+    opts._entries.forEach(this.addEntry, this);
   }
 }
 
 Log.prototype.addPage = function (page) {
-  this._pages.push(new _page.Page(page));
-
+  page = page instanceof _page.Page ? page : new _page.Page(page);
+  this._pages.push(page);
   return this;
 };
 
 Log.prototype.addEntry = function (entry, pageref) {
   entry.pageref = pageref || entry.pageref;
-
-  this._entries.push(new _entry.Entry(entry));
-
+  entry = entry instanceof _entry.Entry ? entry : new _entry.Entry(entry);
+  this._entries.push(entry);
   return this;
+};
+/**
+ * Override toJSON behaviour so it will eliminate
+ * all _* properies and replace it with a proper ones.
+ */
+Log.prototype.toJSON = function () {
+  var copy = Object.assign({}, this);
+  var keys = Object.keys(copy);
+  var under = keys.filter(function (key) {
+    return key.indexOf('_') === 0;
+  });
+  under.forEach(function (key) {
+    var realKey = key.substr(1);
+    copy[realKey] = copy[key];
+    delete copy[key];
+  });
+  return JSON.stringify(copy);
 };
 
 },{"./comment":2,"./creator":5,"./entry":7,"./page":10,"./version":17}],10:[function(require,module,exports){
@@ -699,6 +745,23 @@ PostData.prototype.addParam = function (param) {
 
   return this;
 };
+/**
+ * Override toJSON behaviour so it will eliminate
+ * all _* properies and replace it with a proper ones.
+ */
+PostData.prototype.toJSON = function () {
+  var copy = Object.assign({}, this);
+  var keys = Object.keys(copy);
+  var under = keys.filter(function (key) {
+    return key.indexOf('_') === 0;
+  });
+  under.forEach(function (key) {
+    var realKey = key.substr(1);
+    copy[realKey] = copy[key];
+    delete copy[key];
+  });
+  return JSON.stringify(copy);
+};
 
 },{"./comment":2,"./param":12}],14:[function(require,module,exports){
 'use strict';
@@ -867,7 +930,8 @@ function Request() {
     },
 
     set: function set(postData) {
-      this._postData = new _postData.PostData(postData);
+      postData = postData instanceof _postData.PostData ? postData : new _postData.PostData(postData);
+      this._postData = postData;
     }
   });
 
@@ -914,37 +978,62 @@ function Request() {
 
   if (opts.headers) {
     opts.headers.forEach(this.addHeader, this);
+  } else if (opts._headers) {
+    opts._headers.forEach(this.addHeader, this);
   }
 
   if (opts.queryString) {
     opts.queryString.forEach(this.addQuery, this);
+  } else if (opts._queryString) {
+    opts._queryString.forEach(this.addQuery, this);
   }
 
   if (opts.cookies) {
     opts.cookies.forEach(this.addCookie, this);
+  } else if (opts._cookies) {
+    opts._cookies.forEach(this.addCookie, this);
   }
 
   if (opts.postData) {
     this.postData = opts.postData;
+  } else if (opts._postData) {
+    this.postData = opts._postData;
   }
 }
 
 Request.prototype.addHeader = function (header) {
-  this._headers.push(new Header.Pair(header));
-
+  header = header instanceof Header.Pair ? header : new Header.Pair(header);
+  this._headers.push(header);
   return this;
 };
 
 Request.prototype.addQuery = function (query) {
-  this._queryString.push(new Query.Pair(query));
-
+  query = query instanceof Query.Pair ? query : new Query.Pair(query);
+  this._queryString.push(query);
   return this;
 };
 
 Request.prototype.addCookie = function (options) {
-  this._cookies.push(new _cookie.Cookie(options));
-
+  options = options instanceof _cookie.Cookie ? options : new _cookie.Cookie(options);
+  this._cookies.push(options);
   return this;
+};
+/**
+ * Override toJSON behaviour so it will eliminate
+ * all _* properies and replace it with a proper ones.
+ */
+Request.prototype.toJSON = function () {
+  var copy = Object.assign({}, this);
+  var keys = Object.keys(copy);
+  var under = keys.filter(function (key) {
+    return key.indexOf('_') === 0;
+  });
+  under.forEach(function (key) {
+    var realKey = key.substr(1);
+    copy[realKey] = copy[key];
+    delete copy[key];
+  });
+  return JSON.stringify(copy);
 };
 
 },{"./comment":2,"./cookie":4,"./pair":11,"./post-data":13,"./util":16}],15:[function(require,module,exports){
@@ -1078,7 +1167,8 @@ function Response() {
     },
 
     set: function set(content) {
-      this._content = new _content.Content(content);
+      content = content instanceof _content.Content ? content : new _content.Content(content);
+      this._content = content;
     }
   });
 
@@ -1107,30 +1197,50 @@ function Response() {
       cookies.forEach(this.addCookie, this);
     }
   });
-
   if (opts.headers) {
     opts.headers.forEach(this.addHeader, this);
+  } else if (opts._headers) {
+    opts._headers.forEach(this.addHeader, this);
   }
-
   if (opts.cookies) {
     opts.cookies.forEach(this.addCookie, this);
+  } else if (opts._cookies) {
+    opts._cookies.forEach(this.addCookie, this);
   }
-
   if (opts.content) {
     this.content = opts.content;
+  } else if (opts._content) {
+    this.content = opts._content;
   }
 }
 
 Response.prototype.addHeader = function (header) {
-  this._headers.push(new Header.Pair(header));
-
+  header = header instanceof Header.Pair ? header : new Header.Pair(header);
+  this._headers.push(header);
   return this;
 };
 
 Response.prototype.addCookie = function (options) {
-  this._cookies.push(new _cookie.Cookie(options));
-
+  options = options instanceof _cookie.Cookie ? options : new _cookie.Cookie(options);
+  this._cookies.push(options);
   return this;
+};
+/**
+ * Override toJSON behaviour so it will eliminate
+ * all _* properies and replace it with a proper ones.
+ */
+Response.prototype.toJSON = function () {
+  var copy = Object.assign({}, this);
+  var keys = Object.keys(copy);
+  var under = keys.filter(function (key) {
+    return key.indexOf('_') === 0;
+  });
+  under.forEach(function (key) {
+    var realKey = key.substr(1);
+    copy[realKey] = copy[key];
+    delete copy[key];
+  });
+  return JSON.stringify(copy);
 };
 
 },{"./comment":2,"./content":3,"./cookie":4,"./pair":11,"./util":16}],16:[function(require,module,exports){

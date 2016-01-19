@@ -5,7 +5,7 @@
 <title>HAR JS</title>
 </head>
 <body class="rest-client">
-  
+
   <script type="text/javascript" src="./har.js"></script>
   <script type="text/javascript" charset="utf-8" async defer>
     var cacheEntry = new HAR.CacheEntry({'comment': 'Cache entry comment'});
@@ -30,6 +30,7 @@
     log.addPage(page);
     log.addEntry(entry);
     console.log(log);
+    console.log(JSON.stringify(log));
   </script>
 </body>
 </html>
