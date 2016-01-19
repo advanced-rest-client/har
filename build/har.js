@@ -373,7 +373,7 @@ Entry.prototype.toJSON = function () {
     copy[realKey] = copy[key];
     delete copy[key];
   });
-  return JSON.stringify(copy);
+  return copy;
 };
 
 },{"./cache-entry":1,"./comment":2,"./date-time":6,"./request":14,"./response":15}],8:[function(require,module,exports){
@@ -549,7 +549,7 @@ Log.prototype.toJSON = function () {
     copy[realKey] = copy[key];
     delete copy[key];
   });
-  return JSON.stringify(copy);
+  return copy;
 };
 
 },{"./comment":2,"./creator":5,"./entry":7,"./page":10,"./version":17}],10:[function(require,module,exports){
@@ -760,7 +760,7 @@ PostData.prototype.toJSON = function () {
     copy[realKey] = copy[key];
     delete copy[key];
   });
-  return JSON.stringify(copy);
+  return copy;
 };
 
 },{"./comment":2,"./param":12}],14:[function(require,module,exports){
@@ -974,7 +974,11 @@ function Request() {
     }
   });
 
-  this.url = opts.url;
+  if (opts.url) {
+    this.url = opts.url;
+  } else if (opts._url) {
+    this.url = opts._url;
+  }
 
   if (opts.headers) {
     opts.headers.forEach(this.addHeader, this);
@@ -1033,7 +1037,7 @@ Request.prototype.toJSON = function () {
     copy[realKey] = copy[key];
     delete copy[key];
   });
-  return JSON.stringify(copy);
+  return copy;
 };
 
 },{"./comment":2,"./cookie":4,"./pair":11,"./post-data":13,"./util":16}],15:[function(require,module,exports){
@@ -1240,7 +1244,7 @@ Response.prototype.toJSON = function () {
     copy[realKey] = copy[key];
     delete copy[key];
   });
-  return JSON.stringify(copy);
+  return copy;
 };
 
 },{"./comment":2,"./content":3,"./cookie":4,"./pair":11,"./util":16}],16:[function(require,module,exports){
